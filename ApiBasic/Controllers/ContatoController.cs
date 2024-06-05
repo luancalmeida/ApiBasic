@@ -38,6 +38,15 @@ namespace ApiBasic.Controllers
             return Ok(contato);
         }
 
+        [HttpGet("ObterNome")]
+        public IActionResult ObterPorNome(string nome) 
+        {
+            //usado o linq, vai conter o nome onde vou estar passando via paramentro ai em cima. 
+            var contatos = _context.Contatos.Where(x => x.Nome.Contains(nome));
+            return Ok(contatos);
+        }  
+
+
         [HttpPut("{id}")]
         //  o " Atualizar(int id, Contato contato)" o contato vai ser um json dos contatos q vao ser atualizados.
         public IActionResult Atualizar(int id, Contato contato)
